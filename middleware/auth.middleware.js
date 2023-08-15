@@ -1,5 +1,6 @@
 const jwt=require("jsonwebtoken");
 const {redisClient}=require("../config/redisdb");
+require("dotenv").config();
 
 const authentication= async (req,res,next)=>{
     
@@ -20,7 +21,7 @@ const authentication= async (req,res,next)=>{
             }
 
             // verifying token
-            let decode= jwt.verify(token,"sambhaji");
+            let decode= jwt.verify(token,process.env.secret_token_key);
             
             if(decode){
 

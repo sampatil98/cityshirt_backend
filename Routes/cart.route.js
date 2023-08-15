@@ -5,20 +5,27 @@ const cartRouter=Router();
 
 
 cartRouter.post("/add",async(req,res)=>{
-    // console.log(req.body);
+    
    try{
     const cartdata= new CartModel(req.body);
-    // console.log(cartdata);
+    
     await cartdata.save();
-    res.status(200).send({"msg":"Added to Cart"});
+    res.status(200).send({
+        isError:false,
+        message:"Added to Cart"
+    });
 
    }catch(err){
-    res.status(400).send({"err":err.message});
+    res.status(400).send({
+        isError:true,
+        error:err.message
+    });
    }
 });
 
 cartRouter.get("/",async(req,res)=>{
     const {userId}=req.body;
+    console.log(userId);
     try{
         let data= await CartModel.find({userId});
         res.status(200).send({"data":data});
