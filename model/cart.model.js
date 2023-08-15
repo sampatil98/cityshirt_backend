@@ -11,7 +11,8 @@ const cartSchema = mongoose.Schema({
     "fit":{type:String,require:true},
     "size":{type:Number,require:true},
     "quantity":{type:Number,require:true},
-    "userId":{type:String,require:true}
+    "userId":{type:String,require:true},
+    "id":{type:String,require:true}
 });
 
 const CartModel = mongoose.model("cart_data",cartSchema);

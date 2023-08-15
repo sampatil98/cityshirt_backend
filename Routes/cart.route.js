@@ -7,6 +7,17 @@ const cartRouter=Router();
 cartRouter.post("/add",async(req,res)=>{
     
    try{
+    const {id}=req.body;
+    const ispresent=await CartModel.findOne({id,userId});
+
+    if(ispresent){
+     return res.status(400).send({
+            isError:true,
+            message:"Already present"
+        });
+    }
+
+    
     const cartdata= new CartModel(req.body);
     
     await cartdata.save();
