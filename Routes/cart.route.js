@@ -37,12 +37,19 @@ cartRouter.get("/",async(req,res)=>{
 
 cartRouter.delete("/:id",async(req,res)=>{
     const {id}=req.params;
+    console.log(id);
     try{
         let data= await CartModel.findByIdAndDelete(id);
-        res.status(200).send({"msg":" deleted successfully"});
+        res.status(200).send({
+            isError:false,
+            message:" deleted successfully"
+        });
 
     }catch(err){
-        res.status(400).send({"err":err.msg});
+        res.status(400).send({
+            isError:true,
+            message:err.msg
+        });
     }
 
 })
