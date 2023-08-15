@@ -7,7 +7,7 @@ const cartRouter=Router();
 cartRouter.post("/add",async(req,res)=>{
     
    try{
-    const {id}=req.body;
+    const {id,userId}=req.body;
     const ispresent=await CartModel.findOne({id,userId});
 
     if(ispresent){
