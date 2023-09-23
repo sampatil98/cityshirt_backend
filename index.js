@@ -9,6 +9,7 @@ const {userRoute}=require("./Routes/user.route");
 const {productRouter}=require("./Routes/product.route");
 const {cartRouter}=require("./Routes/cart.route");
 const {authentication}=require("./middleware/auth.middleware");
+const {paymentrouter}=require("./Routes/payment.route");
 
 const app=express();
 
@@ -19,8 +20,10 @@ app.use(cors());
 app.use("/user",userRoute);
 app.use("/product",productRouter);
 
+
 app.use(authentication);
 app.use("/cart",cartRouter);
+app.use("/payment",paymentrouter);
 
 app.listen(process.env.port,async ()=>{
     try{

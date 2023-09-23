@@ -29,10 +29,15 @@ const authentication= async (req,res,next)=>{
                 req.body.userId=decode.userId;
                 next();
             }else{
-                res.status(200).send({"err":"Please login first 1"});
+                res.status(200).send({
+                    isError:true,
+                    err:"Please login first 1"
+                });
             }
         }catch(err){
-            res.status(400).send({"err":err.message});
+            res.status(400).send({
+                isError:true,
+                err:err.message});
         }
     }else{
         res.status(400).send({"err":"Please login first 2"});
