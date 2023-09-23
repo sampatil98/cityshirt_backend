@@ -58,7 +58,7 @@ userRoute.post("/login",async(req,res)=>{
                         isError:false,
                         message:"login successful",
                         token:token,
-                        user:user.firstname
+                        user:user
                     });
                     
                 } else {

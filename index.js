@@ -4,7 +4,7 @@ require("dotenv").config();
 
 
 const connection=require("./config/db");
-const {redisClient}=require("./config/redisdb");
+// const {redisClient}=require("./config/redisdb");
 const {userRoute}=require("./Routes/user.route");
 const {productRouter}=require("./Routes/product.route");
 const {cartRouter}=require("./Routes/cart.route");
@@ -29,8 +29,8 @@ app.listen(process.env.port,async ()=>{
     try{
         await connection;
         console.log("connected to DB");
-        await redisClient.connect();
-        console.log("connected to Redis database");
+        // await redisClient.connect();
+        // console.log("connected to Redis database");
         console.log(`server is running at port ${process.env.port}`);
     }catch(err){
         console.log(err);

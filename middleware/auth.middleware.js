@@ -12,13 +12,13 @@ const authentication= async (req,res,next)=>{
 
             // first check if tocken is blacklisted or not 
 
-            const isblacklisted= await redisClient.get(token);
-            if(isblacklisted){
-                return res.status(400).send({
-                    isError:true,
-                    message:"token Expired please login..!"
-                })
-            }
+            // const isblacklisted= await redisClient.get(token);
+            // if(isblacklisted){
+            //     return res.status(400).send({
+            //         isError:true,
+            //         message:"token Expired please login..!"
+            //     })
+            // }
 
             // verifying token
             let decode= jwt.verify(token,process.env.secret_token_key);
@@ -27,6 +27,7 @@ const authentication= async (req,res,next)=>{
 
                 // attaching userid to req.body
                 req.body.userId=decode.userId;
+                req.body.user=decode;
                 next();
             }else{
                 res.status(200).send({
